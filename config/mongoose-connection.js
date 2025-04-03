@@ -1,8 +1,12 @@
 const mongoose = require('mongoose');
+const debug = require("debug")("development:mongoose");
+const config = require('config');
+// In terminal write $env:DEBUG="development:*"
+// $env:DEBUG="development:*
 
 mongoose
-.connect('mongodb://127.0.0.1:27017/bagStore')
-.then(() => console.log("Db connected"))
+.connect(`${config.get("MONGODB_URI")}/bagStore`)
+.then(() => debug("Db connected"))
 .catch((err)=>{console.log(err)})
 
 
